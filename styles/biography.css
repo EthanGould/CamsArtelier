@@ -1,0 +1,32 @@
+.page-header {
+	margin-top: 50px;
+	font-family: 'Amatic SC', cursive;
+	font-size: 22px;
+	text-align: center;
+}
+
+.biography-container {
+	font-family: 'Open Sans', sans-serif;
+	width: 100%;
+}
+
+.biography-image-wrap {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.biography-content {
+	line-height: 30px;
+	padding: 0 10px;
+}
+
+@media (min-width: 768px) {
+	
+	.biography-container {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+
+
+}
