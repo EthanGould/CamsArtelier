@@ -2,6 +2,7 @@
 	padding: 5px;
 	border: 1px solid grey;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .gallery-image-wrapper {
@@ -21,6 +22,78 @@
 	width: 100%;
 	margin-top: 2px;
 }
+
+.top-box {
+	width: 50%;
+	margin-bottom: 15px;
+	background-color: rgb(255, 204, 102);
+	font-family: 'Amatic SC', cursive;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.top-box-header {
+	margin: 0;
+	text-align: center;
+	font-size: 25px;
+	padding: 5px;
+	text-decoration: underline;
+}
+
+.top-box-content {
+	font-family: 'Bilbo', cursive;
+	font-size: 18px;
+}
+
+.top-box-map {
+	width: 100%;
+}
+
+.social-container {
+	width: 100%;
+	border: 1px solid lightgrey;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.social-button {
+	padding: 10px;
+	width: 80%;
+	margin: 0 auto;
+	border-radius: 7px;
+	text-align: center;
+}
+
+.social-button-facebook {
+	color: white;
+	background-color: rgb(59, 89, 152);
+	margin-bottom: 10px;
+}
+
+.social-button-instagram {
+	color: white;
+	background-color: rgb(182, 119, 33)
+}
+
+.gallery-allphotos-box {
+	position: absolute;
+	bottom: 0;
+	right:0;
+	background: red;
+	padding: 5px 10px;
+	margin: 0;
+	color: white;
+	font-family: 'Amatic SC', cursive;
+	letter-spacing: 1px;
+	border-right: 1px solid maroon;
+	border-bottom: 1px solid maroon;
+	font-weight: 700;
+}
+
+.gallery-allphotos-box a {
+	color: white;
+}
+
 
 @media (min-width: 768px) {
 
@@ -47,54 +120,5 @@
 
 	.top-box {
 		width: 100%;
-		margin-bottom: 15px;
-		background-color: rgb(255, 204, 102);
-		font-family: 'Amatic SC', cursive;
-		padding: 10px;
-		box-sizing: border-box;
 	}
-
-	.top-box-header {
-		margin: 0;
-		text-align: center;
-		font-size: 25px;
-		padding: 5px;
-		text-decoration: underline;
-	}
-
-	.top-box-content {
-		font-family: 'Bilbo', cursive;
-		font-size: 18px;
-	}
-
-	.top-box-map {
-		width: 100%;
-	}
-
-	.social-container {
-		width: 100%;
-		border: 1px solid lightgrey;
-		padding: 10px;
-		box-sizing: border-box;
-	}
-
-	.social-button {
-		padding: 10px;
-		width: 80%;
-		margin: 0 auto;
-		border-radius: 7px;
-		text-align: center;
-	}
-
-	.social-button-facebook {
-		color: white;
-		background-color: rgb(59, 89, 152);
-		margin-bottom: 10px;
-	}
-
-	.social-button-instagram {
-		color: white;
-		background-color: rgb(182, 119, 33)
-	}
-
 }
