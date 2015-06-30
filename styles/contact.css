@@ -1,5 +1,5 @@
 body {
-	padding: 50px 100px;
+/*	padding: 50px 100px;*/
 	font-size: 13px;
 	font-size: Verdana, Tahoma, sans-serif;
 }
@@ -10,16 +10,16 @@ h2 {
 input, textarea {
 	padding: 10px;
 	border: 1px solid #E5E5E5;
-	width: 200px;
+	width: 100%;
 	color: #999999;
+	box-sizing: border-box;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 	-moz-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 	-webkit-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px;
 }
 textarea {
-	width: 400px;
+	width: 100%;
 	height: 150px;
-	max-width: 400px;
 	line-height: 19px;
 }
 input:hover, textarea:hover,
@@ -41,4 +41,20 @@ input:focus, textarea:focus {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px
+}
+
+.contact-form {
+	width: 90%;
+	margin: 100px 5% 0 5%;
+}
+
+@media (min-width: 768px) {
+	
+	.contact-form {
+		width: 50%;
+		margin: 100px 25% 0 25%;
+	}
+
+
+
 }
