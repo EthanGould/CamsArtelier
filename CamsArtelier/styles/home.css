@@ -1,0 +1,177 @@
+.left-col {
+	padding: 5px;
+	border: 1px solid grey;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.gallery-image-wrapper {
+	float: left;
+}
+
+#gallery-image-top-left {
+	width: 32.75%;
+}
+
+#gallery-image-top-right {
+	width: 65.25%;
+	margin-left: 2%;
+}
+
+#gallery-image-bottom {
+	width: 100%;
+	margin-top: 2px;
+}
+
+.arrow-icon {
+	height: 15px;
+	width: 15px;
+	position: absolute;
+	right: 0px;
+	top: 8px;
+	display: inline-block;
+	background-image: url('../images/white-arrow-icon.png');
+	background-size: contain;
+	background-repeat: no-repeat;	
+}
+
+.gallery-allphotos-box:hover {
+	opacity: 1;
+}
+
+.gallery-allphotos-box:active {
+	border: 0px;
+}
+
+.facebook-icon {
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	left: 2px;
+	top: 1px;
+	display: inline-block;
+	background-image: url('../images/facebook-icon.png');
+	background-size: contain;
+}
+
+.instagram-icon {
+	height: 30px;
+	width: 30px;
+	position: absolute;
+	left: 6px;
+	top: 4px;
+	display: inline-block;
+	background-image: url('../images/instagram-icon.png');
+	background-size: contain;
+}
+
+.top-box {
+	width: 50%;
+	margin-bottom: 15px;
+	background-color: rgb(255, 204, 102);
+	font-family: 'Amatic SC', cursive;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.top-box-header {
+	margin: 0;
+	text-align: center;
+	font-size: 25px;
+	padding: 5px;
+	text-decoration: underline;
+}
+
+.top-box-content {
+	font-family: 'Bilbo', cursive;
+	font-size: 18px;
+}
+
+.top-box-map {
+	width: 100%;
+}
+
+.social-container {
+	width: 100%;
+	border: 1px solid lightgrey;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.social-button {
+	padding: 10px 10px 10px 30px;
+	width: 80%;
+	margin: 0 auto;
+	border-radius: 7px;
+	text-align: center;
+	position: relative;
+	transition: opacity 0.3s;
+}
+
+.social-button:hover {
+	opacity: 0.9;
+}
+
+.social-button:active {
+	opacity: 1;
+}
+
+.social-button-facebook {
+	color: white;
+	background-color: rgb(59, 89, 152);
+	margin-bottom: 10px;
+}
+
+.social-button-instagram {
+	color: white;
+	background-color: rgb(182, 119, 33)
+}
+
+.gallery-allphotos-box {
+	position: absolute;
+	bottom: 0;
+	right:0;
+	background: red;
+	opacity: 0.8;
+	padding: 5px 20px 5px 10px;
+	margin: 0;
+	color: white;
+	font-family: 'Amatic SC', cursive;
+	letter-spacing: 1px;
+	border-right: 1px solid maroon;
+	border-bottom: 1px solid maroon;
+	font-weight: 700;
+}
+
+.gallery-allphotos-box a {
+	color: white;
+}
+
+
+@media (min-width: 768px) {
+
+	.gallery-image-wrapper img {
+		width: 100%;
+		-webkit-filter: opacity(0.7);
+		filter: opacity(0.7);
+		transition: filter 0.3s linear;
+		transition: -webkit-filter 0.3s linear;
+	}
+
+	.gallery-image-wrapper {
+		overflow: hidden;
+	}
+
+	.gallery-image-wrapper img:hover {
+		-webkit-filter: opacity(1);
+		filter: opacity(1);	
+	}
+
+	.gallery-container {
+		width: 60%;
+	}
+
+	.top-box {
+		width: 100%;
+	}
+}
