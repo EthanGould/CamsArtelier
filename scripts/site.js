@@ -1,15 +1,15 @@
 var module = {};
 var _el = {};
 var bioOffset = -0.2 * ($(window).height());
-module.parallax = function() {
-	var currentScrollTop = parseFloat( _el.$bioImage.css('top') );
-	var scrollSpeed = ( -(bioOffset + window.pageYOffset/0.3) );
-	console.log(scrollSpeed);
-	var newTop = scrollSpeed + 'px'	
-	console.log(newTop);
-	_el.$bioImage.css('top', newTop );
+// module.parallax = function() {
+// 	var currentScrollTop = parseFloat( _el.$bioImage.css('top') );
+// 	var scrollSpeed = ( -(bioOffset + window.pageYOffset/0.3) );
+// 	console.log(scrollSpeed);
+// 	var newTop = scrollSpeed + 'px'	
+// 	console.log(newTop);
+// 	_el.$bioImage.css('top', newTop );
 
-};
+// };
 
 module.testimonials = [{
 	'author': 'Brandon Bowers',
@@ -99,8 +99,8 @@ module.eventHandlers = function() {
 	_el.$hamburger.on('click', module.toggleMenu);
 	module.cycleTestimonials(module.testimonials);
 	// window).scroll(module.parallax);
-	var intervalID = window.setInterval(module.cycleTestimonials, 5000, module.testimonials);
-	var intervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+	var intervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
+	// var intervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
 };
 
 module.init = function() {

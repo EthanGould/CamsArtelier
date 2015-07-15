@@ -3,9 +3,12 @@
 	box-sizing: border-box;
 	position: relative;
 	z-index: -1;
+	margin-top: 10px;
+
+	overflow: auto;
 }
 
-.gallery-image-wrapper {
+/*.gallery-image-wrapper {
 	float: left;
 }
 
@@ -27,9 +30,9 @@
 
 #gallery-image-bottom-left {
 	width: 50%;
-}
+}*/
 
-.arrow-icon {
+/*.arrow-icon {
 	height: 15px;
 	width: 15px;
 	position: absolute;
@@ -47,6 +50,50 @@
 
 .gallery-allphotos-box:active {
 	border: 0px;
+}*/
+
+.site-banner-container {
+	margin-top: 50px;
+	padding: 10px;
+}
+
+.site-banner-logo {
+	width: 30%;
+	margin: 0 35%;
+}
+
+.site-banner-text {
+	text-align: center;
+	font-family: 'Amatic SC', cursive;
+	font-size: 80px;
+	margin: 0;
+}
+
+.news-block {
+	width: 100%;
+	padding: 10px;
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 25px;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+.news-block-label {
+	text-decoration: underline;
+	margin: 0;
+	text-align: center;
+
+	font-family: 'Amatic SC', cursive;
+	font-size: 32px;
+}
+
+.news-block-content {
+	padding: 10px;
+	margin: 0;
+
+	box-sizing: border-box;
 }
 
 .facebook-icon {
@@ -158,33 +205,45 @@
 	padding-bottom: 250px;
 }
 
-.testimonials-container {
-	width: 100%;
-	font-family: 'Amatic SC', cursive;
-	color: darkblue;
-	position: absolute;
-	bottom: 0;
-	padding: 10px;
-	box-sizing: border-box;
 
-}
-
-.testimonial-content {
-	font-size: 30px;
-	width: 100%;
-}
-
-.testimonial-author {
-	font-size: 24px;
-}
 
 .gallery-container {
 	width: 100%;
+
 }
 
 
 
 @media (min-width: 768px) {
+
+	.site-banner-container {
+		display: inline-block;
+	}
+
+	.site-banner-logo {
+		width: 20%;
+		margin: 0;
+		float: left;
+	}
+
+	.site-banner-text {
+		float: left;
+  		margin-top: 30px;
+	}
+
+
+	.news-block-label {
+		float: left;
+		text-align: left;
+		width: 20%;
+	}
+
+	.news-block-content {
+		float: left;
+		width: 80%;
+	}
+
+
 
 	.gallery-image-wrapper img {
 		width: 100%;

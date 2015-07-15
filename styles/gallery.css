@@ -12,6 +12,8 @@
 
 .preview-container {
 	width: 100%;
+	display: inline-block;
+
 }
 
 .preview-image-wrap {
@@ -23,6 +25,32 @@
 
 .preview-image {
 	width: 100%;
+}
+
+.testimonials-container {
+	width: 100%;
+	font-family: 'Amatic SC', cursive;
+	color: darkblue;
+	padding: 10px;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+.testimonials-header {
+	text-align: center;
+	font-family: 'Amatic SC', cursive;
+	font-size: 36px;
+	color: darkblue;
+	text-decoration: underline;
+}
+
+.testimonial-content {
+	font-size: 30px;
+	width: 100%;
+}
+
+.testimonial-author {
+	font-size: 24px;
 }
 
 @media (min-width: 768px) {
