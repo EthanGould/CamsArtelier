@@ -1,6 +1,6 @@
 var module = {};
 var _el = {};
-var bioOffset = -0.2 * ($(window).height());
+// var bioOffset = -0.2 * ($(window).height());
 // module.parallax = function() {
 // 	var currentScrollTop = parseFloat( _el.$bioImage.css('top') );
 // 	var scrollSpeed = ( -(bioOffset + window.pageYOffset/0.3) );
@@ -13,9 +13,7 @@ var bioOffset = -0.2 * ($(window).height());
 
 module.testimonials = [{
 	'author': 'Brandon Bowers',
-	'content': 'The dip net painting you gave me reminds me of the good times I had with my father evertime I look at it.'
-
-
+	'content': 'The dip net painting by Cam reminds me of the good times I had with my father evertime I look at it.'
 },
 {
 	'author': 'Barrack Obama',
@@ -27,31 +25,28 @@ module.testimonials = [{
 
 }];
 
-module.images = [
-	'../images/angry-man.jpg', '../images/bear.jpg', '../images/joker.jpg', '../images/silver-salmon.jpg', '../images/old-man.jpg'];
-
-	module.imagez = [{
-		path: '../images/angry-man.jpg',
-		positionMobile: '0 -100px',
-		positionDektop: '0 -400px'
-	},
-	{
-		path: '../images/bear.jpg',
-		positionMobile: '0px 25px',
-		positionDektop: '0px -200px'
-	},{
-		path: '../images/joker.jpg',
-		positionMobile: '0 25px',
-		positionDektop: '0 -75px'
-	},{
-		path: '../images/silver-salmon.jpg',
-		positionMobile: '0 -100px',
-		positionDektop: '0 -250px'
-	},{
-		path: '../images/old-man.jpg',
-		positionMobile: '0 -100px',
-		positionDektop: '0 -250px'
-	}];
+module.imagez = [{
+	path: '../images/angry-man.jpg',
+	positionMobile: '0 -100px',
+	positionDektop: '0 -400px'
+},
+{
+	path: '../images/bear.jpg',
+	positionMobile: '0px 25px',
+	positionDektop: '0px -200px'
+},{
+	path: '../images/joker.jpg',
+	positionMobile: '0 25px',
+	positionDektop: '0 -75px'
+},{
+	path: '../images/silver-salmon.jpg',
+	positionMobile: '0 -100px',
+	positionDektop: '0 -250px'
+},{
+	path: '../images/old-man.jpg',
+	positionMobile: '0 -100px',
+	positionDektop: '0 -250px'
+}];
 
 module.testimonialCount = 0;
 module.galleryCount = 0;
@@ -60,12 +55,12 @@ module.cycleTestimonials = function(testimonials) {
 	var testimonial = testimonials[module.testimonialCount]
 
 	_el.$testimonialContent.empty().fadeIn(800).delay(4000).fadeOut(800);
-	_el.$testimonialAuthor.empty().fadeIn(800).delay(3000).fadeOut(800);
+	_el.$testimonialAuthor.empty().fadeIn(800).delay(4000).fadeOut(800);
 
 	_el.$testimonialContent.text('"' + testimonial.content + '"');
 	_el.$testimonialAuthor.text('- ' + testimonial.author);
 
-	module.count++;
+	module.testimonialCount++;
 	if( module.testimonialCount >= 3 ) {
 		module.testimonialCount = 0;
 	}
@@ -101,8 +96,8 @@ module.eventHandlers = function() {
 	_el.$hamburger.on('click', module.toggleMenu);
 	module.cycleTestimonials(module.testimonials);
 	// window).scroll(module.parallax);
-	var intervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
-	var intervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+	var testimonialIntervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
+	var galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
 };
 
 module.init = function() {
