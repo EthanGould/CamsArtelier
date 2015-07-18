@@ -59,7 +59,9 @@ module.galleryCount = 0;
 module.cycleTestimonials = function(testimonials) {
 	var testimonial = testimonials[module.testimonialCount]
 
-	_el.$testimonialContainer.hide().fadeIn(800).delay(3000).fadeOut(800);
+	_el.$testimonialContent.empty().fadeIn(800).delay(4000).fadeOut(800);
+	_el.$testimonialAuthor.empty().fadeIn(800).delay(3000).fadeOut(800);
+
 	_el.$testimonialContent.text('"' + testimonial.content + '"');
 	_el.$testimonialAuthor.text('- ' + testimonial.author);
 
@@ -100,7 +102,7 @@ module.eventHandlers = function() {
 	module.cycleTestimonials(module.testimonials);
 	// window).scroll(module.parallax);
 	var intervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
-	// var intervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+	var intervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
 };
 
 module.init = function() {
