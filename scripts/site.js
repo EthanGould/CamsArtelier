@@ -83,7 +83,7 @@ module.cycleGallery = function(images) {
 
 	module.galleryCount++;
 
-	if( module.galleryCount >= module.images.length ) {
+	if( module.galleryCount >= module.imagez.length ) {
 		module.galleryCount = 0;
 	}
 };
