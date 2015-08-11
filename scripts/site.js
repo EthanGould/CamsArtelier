@@ -1,5 +1,6 @@
-var module = {};
-var _el = {};
+var module = {},
+	gallery= {},
+	_el = {};
 // var bioOffset = -0.2 * ($(window).height());
 // module.parallax = function() {
 // 	var currentScrollTop = parseFloat( _el.$bioImage.css('top') );
@@ -26,23 +27,33 @@ module.testimonials = [{
 }];
 
 module.imagez = [{
+	name: 'angry-man',
 	path: '../images/angry-man.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -400px'
 },
 {
+	name: 'bear',
 	path: '../images/bear.jpg',
 	positionMobile: '0px 25px',
 	positionDektop: '0px -200px'
 },{
+	name: 'joker',
 	path: '../images/joker.jpg',
 	positionMobile: '0 25px',
 	positionDektop: '0 -75px'
 },{
+	name: 'salmon',
 	path: '../images/silver-salmon.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -250px'
 },{
+	name: 'mountain',
+	path: '../images/mountain-landscape.jpg',
+	positionMobile: '0 -100px',
+	positionDektop: '0 -250px'
+},{
+	name: 'old-man',
 	path: '../images/old-man.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -250px'
@@ -64,6 +75,27 @@ module.cycleTestimonials = function(testimonials) {
 	if( module.testimonialCount >= 3 ) {
 		module.testimonialCount = 0;
 	}
+};
+
+module.enlargeImage = function(selectedImage) {
+	console.log()
+	var position,
+		key = $(selectedImage).find('img').attr('id'),
+		image = $.grep(module.imagez, function(img) { return img.name == key; });
+
+	clearInterval( module.galleryIntervalID );
+	clearTimeout(resetGallery);	
+	if ( $(window).width() > 768 ) { position = image[0].positionDektop; }
+	else { position = image[0].positionMobile; }
+
+	_el.$galleryImageContainer.css({
+		'background-image': 'url("' + image[0].path + '")',
+		'background-position': position
+	});
+
+	var resetGallery = setTimeout(function() {
+		module.galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+	}, 10000);
 };
 
 module.cycleGallery = function(images) {
@@ -88,6 +120,40 @@ module.cycleGallery = function(images) {
 	}
 };
 
+gallery.initSlider = function() {
+	$.each( _el.$homepageSlideImg, function(i) {
+		if ( i < 3 ) {
+			img = $(_el.$homepageSlideImg[i])
+			img.attr({
+				'src': module.imagez[i].path,
+				'data-title': module.imagez[i].name
+			});
+		};
+	});
+}
+
+gallery.getNext = function(current) {
+	for( var i = 0; i < module.imagez.length; i++ ) {
+		console.log(module.imagez[i]);
+		if ( module.imagez[i].name === current ) {
+			return module.images[i];
+		}
+
+	}
+}
+
+gallery.advance = function() {
+	var current = $(_el.$homepageSlide[0]).attr('data-title'),
+		nextImg = gallery.getNext(current);
+		debugger;
+	console.log('next image', nextImg, 'current', current)
+}
+
+gallery.reverse = function() {
+	return true;
+}
+
+
 module.toggleMenu = function() {
 	_el.$navList.slideToggle(500);
 };
@@ -95,9 +161,20 @@ module.toggleMenu = function() {
 module.eventHandlers = function() {
 	_el.$hamburger.on('click', module.toggleMenu);
 	module.cycleTestimonials(module.testimonials);
+	_el.$imagePreview.click(function() {
+		module.enlargeImage(this);
+	})
 	// window).scroll(module.parallax);
-	var testimonialIntervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
-	var galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+	module.testimonialIntervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
+	module.galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
+
+	$(_el.$homepageSlide[0]).click(function() {
+		gallery.advance();
+	});
+
+	_el.$homepageSlide[2].click(function() {
+		gallery.reverse();
+	});
 };
 
 module.init = function() {
@@ -108,8 +185,13 @@ module.init = function() {
 	_el.$testimonialContent = $('.testimonial-content');
 	_el.$testimonialAuthor = $('.testimonial-author');
 	_el.$galleryImageContainer = $('.fullwidth-image-container');
+	_el.$imagePreview = $('.preview-image-wrap');
+	_el.$homepageSlide = $('.gallery-slide-wrap');
+	_el.$homepageSlideImg = $('.gallery-slide-img');
+
 
 	module.eventHandlers();
+	gallery.initSlider();
 };
 
 $(document).ready(function(){

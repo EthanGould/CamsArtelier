@@ -8,49 +8,47 @@
 	overflow: auto;
 }
 
-/*.gallery-image-wrapper {
-	float: left;
+/*///////////////
+** Gallery
+///////////////*/
+
+.gallery-container {
+	width: 100%;
+	height: auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
 }
 
-#gallery-image-top-left {
-	width: 60%;
-	display: inline-block;
-	margin: 20px 20%;
+.gallery-slide-wrap {
+	width: 25%;
+	height: auto; /* Or whatever */
+	margin: auto; 
+	flex-grow: 1; /* default 0 */
+	/*border: 1px solid black;*/
 }
 
-#gallery-image-top-right {
-	width: 65.25%;
+.gallery-slide-img {
+	height: initial;
+}
+
+.gallery-slide-wrap--middle {
+	flex-grow: 2;
+	width: 50%;
+}
+
+#gallery-slide-wrap1 {
+	margin-right: 2%;
+}
+
+#gallery-slide-wrap3 {
 	margin-left: 2%;
 }
 
-#gallery-image-bottom {
-	width: 100%;
-	margin-top: 2px;
-}
 
-#gallery-image-bottom-left {
-	width: 50%;
-}*/
 
-/*.arrow-icon {
-	height: 15px;
-	width: 15px;
-	position: absolute;
-	right: 0px;
-	top: 8px;
-	display: inline-block;
-	background-image: url('../images/white-arrow-icon.png');
-	background-size: contain;
-	background-repeat: no-repeat;	
-}
 
-.gallery-allphotos-box:hover {
-	opacity: 1;
-}
-
-.gallery-allphotos-box:active {
-	border: 0px;
-}*/
 
 .site-banner-container {
 	margin-top: 50px;
