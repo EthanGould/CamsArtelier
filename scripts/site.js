@@ -143,12 +143,10 @@ gallery.initSlider = function() {
 }
 
 gallery.imageTemplate = function(img) {
-		var template =	'<div class="gallery-slide-img-name">' + img.niceName + '</div>'
-					+ '<img title="' + img.niceName
+		var template = '<img title="' + img.niceName
 					+ '" data-index="' + module.imagez.indexOf( img )
 					+ '" src="' + img.path
 					+ '" alt="" width="200" class="gallery-slide-img">';
-					// console.log(template);
 	return template;
 }
 
@@ -180,7 +178,7 @@ gallery.updateNav = function() {
 	nextImageIndex = gallery.getImage( rImageIndex );
 	previousImageIndex = gallery.getImage( lImageIndex );
 
-	// apply new templates for next nav images
+	// replace old nav images + captions with next up, save nav button
 	_el.$homepageSlideLeft.children().not('.gallery-slide-nav').remove();
 	_el.$homepageSlideLeft.append( gallery.imageTemplate( previousImageIndex ) );
 
@@ -195,14 +193,12 @@ gallery.reverse = function(event) {
 	var $curIndex = $('.gallery-slide-wrap--middle').children('img').data('index'),
 		index = ( ($curIndex - 1) < 0) ? module.imagez.indexOf( module.imagez[ module.imagez.length - 1 ] ) : $curIndex - 1;
 		nextImage = gallery.getImage( index );
-
-	$('.gallery-slide-wrap--middle').children('img').fadeOut()
-	setTimeout(function() {
-		$('.gallery-slide-wrap--middle').children().remove();
-		$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
-		gallery.updateNav();
-	}, 500);
-
+	
+	$('.gallery-slide-wrap--middle').children().remove();
+	$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
+	$('.gallery-slide-wrap--middle').append(
+		$('<div class="gallery-slide-img-name">' + nextImage.niceName + '</div><div class="gallery-slide-img-name-triangle"></div>' ).fadeIn() );
+	gallery.updateNav();
 };
 
 gallery.advance = function(event) {
@@ -210,13 +206,11 @@ gallery.advance = function(event) {
 		index = ( ($curIndex === module.imagez.length - 1) ) ? 0 : $curIndex + 1 ;
 		nextImage = gallery.getImage( index );
 
-	$('.gallery-slide-wrap--middle').children().fadeOut()
-	setTimeout(function() {
-		$('.gallery-slide-wrap--middle').children().remove();
-		$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
-		gallery.updateNav();
-	}, 500);
-
+	$('.gallery-slide-wrap--middle').children().remove();
+	$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
+	$('.gallery-slide-wrap--middle').append(
+		$('<div class="gallery-slide-img-name">' + nextImage.niceName + '</div><div class="gallery-slide-img-name-triangle"></div>' ).fadeIn() );
+	gallery.updateNav();
 };
 
 
