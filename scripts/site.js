@@ -27,34 +27,40 @@ module.testimonials = [{
 }];
 
 module.imagez = [{
+	name: 'bear',
+	niceName: 'Color Bear',
+	path: '../images/bear.jpg',
+	positionMobile: '0px 25px',
+	positionDektop: '0px -200px'
+},{
 	name: 'angry-man',
+	niceName: 'The Shining',
 	path: '../images/angry-man.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -400px'
 },
 {
-	name: 'bear',
-	path: '../images/bear.jpg',
-	positionMobile: '0px 25px',
-	positionDektop: '0px -200px'
-},{
 	name: 'joker',
+	niceName: 'The Joker',
 	path: '../images/joker.jpg',
 	positionMobile: '0 25px',
 	positionDektop: '0 -75px'
 },{
+	name: 'old-man',
+	niceName: 'Old Man',
+	path: '../images/old-man.jpg',
+	positionMobile: '0 -100px',
+	positionDektop: '0 -250px'
+},{
 	name: 'salmon',
+	niceName: 'Silver Salmon',
 	path: '../images/silver-salmon.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -250px'
 },{
 	name: 'mountain',
+	niceName: 'Color Mountain',
 	path: '../images/mountain-landscape.jpg',
-	positionMobile: '0 -100px',
-	positionDektop: '0 -250px'
-},{
-	name: 'old-man',
-	path: '../images/old-man.jpg',
 	positionMobile: '0 -100px',
 	positionDektop: '0 -250px'
 }];
@@ -83,7 +89,7 @@ module.enlargeImage = function(selectedImage) {
 		key = $(selectedImage).find('img').attr('id'),
 		image = $.grep(module.imagez, function(img) { return img.name == key; });
 
-	clearInterval( module.galleryIntervalID );
+	
 	clearTimeout(resetGallery);	
 	if ( $(window).width() > 768 ) { position = image[0].positionDektop; }
 	else { position = image[0].positionMobile; }
@@ -94,8 +100,9 @@ module.enlargeImage = function(selectedImage) {
 	});
 
 	var resetGallery = setTimeout(function() {
+		clearInterval( module.galleryIntervalID );
 		module.galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
-	}, 10000);
+	}, 5000);
 };
 
 module.cycleGallery = function(images) {
@@ -126,32 +133,91 @@ gallery.initSlider = function() {
 			img = $(_el.$homepageSlideImg[i])
 			img.attr({
 				'src': module.imagez[i].path,
-				'data-title': module.imagez[i].name
+				'title': module.imagez[i].niceName,
+				'data-index': i 
 			});
 		};
 	});
+	gallery.updateNav();
+
 }
 
-gallery.getNext = function(current) {
-	for( var i = 0; i < module.imagez.length; i++ ) {
-		console.log(module.imagez[i]);
-		if ( module.imagez[i].name === current ) {
-			return module.images[i];
-		}
+gallery.imageTemplate = function(img) {
+		var template =	'<div class="gallery-slide-img-name">' + img.niceName + '</div>'
+					+ '<img title="' + img.niceName
+					+ '" data-index="' + module.imagez.indexOf( img )
+					+ '" src="' + img.path
+					+ '" alt="" width="200" class="gallery-slide-img">';
+					// console.log(template);
+	return template;
+}
 
+gallery.getImage = function(index) {
+	return module.imagez[index];
+}
+
+gallery.updateNav = function() {
+	var lImageIndex, rImageIndex, previousImage, nextImageIndex, previousImageIndex,
+		$curIndex = $('.gallery-slide-wrap--middle').children('img').data('index');
+
+	// if on last slide:
+	// show first item on right and second to last on left
+	if ($curIndex === module.imagez.length - 1) {
+		rImageIndex = 0;
+		lImageIndex = $curIndex - 1;
+	// if on first slide:
+	// show second on right and last on left;
+	} else if ( ($curIndex - 1) < 0 ) {
+		rImageIndex = 1 ;
+		lImageIndex = module.imagez.indexOf( module.imagez[ module.imagez.length - 1 ] ) - 1;
+	// else, proceed as usual
+	} else {
+		rImageIndex = $curIndex + 1;
+		lImageIndex = $curIndex - 1;
 	}
+
+	// get index for nav images
+	nextImageIndex = gallery.getImage( rImageIndex );
+	previousImageIndex = gallery.getImage( lImageIndex );
+
+	// apply new templates for next nav images
+	_el.$homepageSlideLeft.children().not('.gallery-slide-nav').remove();
+	_el.$homepageSlideLeft.append( gallery.imageTemplate( previousImageIndex ) );
+
+	_el.$homepageSlideRight.children().not('.gallery-slide-nav').remove();
+	_el.$homepageSlideRight.append( gallery.imageTemplate( nextImageIndex ) );
+
+	// update slide progress counter
+	_el.$homepageSlideCount.text( ( $curIndex + 1 ) + ' / ' + module.imagez.length ); 
 }
 
-gallery.advance = function() {
-	var current = $(_el.$homepageSlide[0]).attr('data-title'),
-		nextImg = gallery.getNext(current);
-		debugger;
-	console.log('next image', nextImg, 'current', current)
-}
+gallery.reverse = function(event) {
+	var $curIndex = $('.gallery-slide-wrap--middle').children('img').data('index'),
+		index = ( ($curIndex - 1) < 0) ? module.imagez.indexOf( module.imagez[ module.imagez.length - 1 ] ) : $curIndex - 1;
+		nextImage = gallery.getImage( index );
 
-gallery.reverse = function() {
-	return true;
-}
+	$('.gallery-slide-wrap--middle').children('img').fadeOut()
+	setTimeout(function() {
+		$('.gallery-slide-wrap--middle').children().remove();
+		$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
+		gallery.updateNav();
+	}, 500);
+
+};
+
+gallery.advance = function(event) {
+	var $curIndex = $('.gallery-slide-wrap--middle').children('img').data('index'),
+		index = ( ($curIndex === module.imagez.length - 1) ) ? 0 : $curIndex + 1 ;
+		nextImage = gallery.getImage( index );
+
+	$('.gallery-slide-wrap--middle').children().fadeOut()
+	setTimeout(function() {
+		$('.gallery-slide-wrap--middle').children().remove();
+		$('.gallery-slide-wrap--middle').append( $( gallery.imageTemplate( nextImage ) ).fadeIn() );
+		gallery.updateNav();
+	}, 500);
+
+};
 
 
 module.toggleMenu = function() {
@@ -168,13 +234,16 @@ module.eventHandlers = function() {
 	module.testimonialIntervalID = window.setInterval(module.cycleTestimonials, 7000, module.testimonials);
 	module.galleryIntervalID = window.setInterval(module.cycleGallery, 5000, module.imagez);
 
-	$(_el.$homepageSlide[0]).click(function() {
-		gallery.advance();
+	$('.gallery-slide-nav--right').click(function(event) {
+		gallery.advance(event);
 	});
 
-	_el.$homepageSlide[2].click(function() {
-		gallery.reverse();
+	$('.gallery-slide-nav--left').click(function() {
+		gallery.reverse(event);
 	});
+
+
+
 };
 
 module.init = function() {
@@ -186,8 +255,12 @@ module.init = function() {
 	_el.$testimonialAuthor = $('.testimonial-author');
 	_el.$galleryImageContainer = $('.fullwidth-image-container');
 	_el.$imagePreview = $('.preview-image-wrap');
-	_el.$homepageSlide = $('.gallery-slide-wrap');
+	_el.$homepageSlides = $('.gallery-slide-wrap');
+	_el.$homepageSlideLeft = $('#gallery-slide-wrap1');
+	_el.$homepageSlideCenter = $('#gallery-slide-wrap2');
+	_el.$homepageSlideRight = $('#gallery-slide-wrap3');
 	_el.$homepageSlideImg = $('.gallery-slide-img');
+	_el.$homepageSlideCount = $('.gallery-slide-count');
 
 
 	module.eventHandlers();
