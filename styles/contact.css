@@ -1,7 +1,11 @@
 body {
-/*	padding: 50px 100px;*/
+/*	padding: 50px 100px;
 	font-size: 13px;
-	font-size: Verdana, Tahoma, sans-serif;
+	font-size: Verdana, Tahoma, sans-serif;*/
+	background-image: url(../images/mountain-landscape-background.jpg);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 h2 {
 	margin-bottom: 20px;
@@ -45,14 +49,14 @@ input:focus, textarea:focus {
 
 .contact-form {
 	width: 90%;
-	margin: 100px 5% 0 5%;
+	margin: 100px 5% 50% 5%;
 }
 
 @media (min-width: 768px) {
 	
 	.contact-form {
 		width: 50%;
-		margin: 100px 25% 0 25%;
+		margin: 100px 25% 30% 25%;
 	}
 
 
