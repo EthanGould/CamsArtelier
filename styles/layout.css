@@ -1,5 +1,6 @@
 body {
 	margin: 0;
+	margin-top: 60px;
 }
 
 a {
@@ -80,6 +81,7 @@ img {
 
 	body {
 		margin: 7px;
+		margin-top: 0;
 	}
 
 	.site-container {
