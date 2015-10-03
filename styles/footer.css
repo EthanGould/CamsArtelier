@@ -1,0 +1,66 @@
+.site-footer {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	padding: 8px 15px 7px 15px;
+	box-sizing: border-box;
+	background-color: rgba(10,10,10,0.8);
+}
+
+.social-items-container {
+	padding: 3px 0 0;
+	margin: 0;
+}
+
+.social-item {
+	height: 25px;
+	width: 25px;
+	display: inline-block;
+	position: relative;
+	margin-right: 10px;
+	border-radius: 50%;
+	transition: 0s;
+	transition-direction: linear;
+}
+
+.social-item:hover {
+	transition: .5s;
+	transform: rotate(380deg);
+}
+
+.social-item > a > img {
+	max-width: 100%;
+}
+
+.footer-email {
+	display: inline-block;
+	position: absolute;
+}
+
+.contact-container {
+	padding: 10px;
+	position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.footer-contact {
+	margin: 0;
+	display: inline-block;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+}
+
+.footer-contact#email {
+	padding-right: 10px;
+    border-right: 1px solid white;
+    margin-right: 10px;
+}
+
+.footer-email-button {
+	height: 25px;
+	background-color: red;
+	border: 1px solid white;
+	color: white;
+	border-radius: 5px;
+}
